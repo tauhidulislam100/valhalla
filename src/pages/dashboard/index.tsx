@@ -2,47 +2,17 @@
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import { Avatar, Box, Button, InputLabel, Tab, Tabs, TextField } from '@mui/material'
+import { Avatar, Box, Button, Fab, InputLabel, Tab, Tabs, TextField } from '@mui/material'
 import { useState } from 'react'
-import Medallions from './medallions'
-
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`
-  }
-}
-
-function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
+import Medallions from 'src/components/Medallions'
+import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
+import { useAuth } from 'src/hooks/useAuth'
+import Icon from 'src/@core/components/icon'
 
 const Home = () => {
-  const [value, setValue] = useState(0)
+  const { logout } = useAuth()
+  const [value, setValue] = useState(3)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -55,7 +25,12 @@ const Home = () => {
           <CardContent style={{ boxShadow: 'none' }}>
             <Box display={'flex'} justifyContent={'space-between'} alignItems={'flex-start'}>
               <Box flexDirection={'row'} display={'flex'} gap={5} alignItems={'center'}>
-                <Avatar sx={{ width: 192, height: 192 }} />
+                <Box sx={{ position: 'relative' }}>
+                  <Avatar sx={{ width: 192, height: 192 }} />
+                  <Fab size='small' color='primary' sx={{ position: 'absolute', bottom: 10, right: 5 }}>
+                    <Icon icon={'mdi:edit'} />
+                  </Fab>
+                </Box>
                 <Box>
                   <Typography fontWeight={'bold'} fontSize={22} mb={2}>
                     MD Tuhin
@@ -89,27 +64,27 @@ const Home = () => {
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered>
-                <Tab label='My Favorites' {...a11yProps(0)} />
-                <Tab label='Post' {...a11yProps(1)} />
-                <Tab label='Medallions' {...a11yProps(2)} />
-                <Tab label='My account' {...a11yProps(3)} />
+                <Tab label='My Favorites' {...a11yProps(0, 'home')} />
+                <Tab label='Post' {...a11yProps(1, 'home')} />
+                <Tab label='Medallions' {...a11yProps(2, 'home')} />
+                <Tab label='My account' {...a11yProps(3, 'home')} />
               </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
+            <CustomTabPanel value={value} index={0} id='home'>
               <Typography>My Favorites</Typography>
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
+            <CustomTabPanel value={value} index={1} id='home'>
               <Typography>Post</Typography>
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
+            <CustomTabPanel value={value} index={2} id='home'>
               <Medallions />
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={3}>
+            <CustomTabPanel value={value} index={3} id='home'>
               <Typography fontWeight={600} fontSize={16}>
                 Edit Profile
               </Typography>
               <Box display={'flex'} justifyContent={'flex-end'}>
-                <Button size='large' type='submit' variant='contained'>
+                <Button onClick={logout} size='large' type='submit' variant='contained'>
                   Change Password
                 </Button>
               </Box>

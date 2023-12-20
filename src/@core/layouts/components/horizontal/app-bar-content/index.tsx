@@ -4,7 +4,7 @@ import Link from 'next/link'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
@@ -32,7 +32,7 @@ const AppBarContent = (props: Props) => {
   const { appBarContent: userAppBarContent, appBarBranding: userAppBarBranding } = props
 
   // ** Hooks
-  const theme = useTheme()
+  // const theme = useTheme()
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -40,7 +40,9 @@ const AppBarContent = (props: Props) => {
         userAppBarBranding(props)
       ) : (
         <LinkStyled href='/'>
-          <img src='/images/logo.png' style={{ maxWidth: '100%', height: 49 }} />
+          <Typography variant='h6' sx={{ lineHeight: 1, fontWeight: 700, fontSize: '1.5rem !important' }}>
+            {themeConfig.templateName}
+          </Typography>
         </LinkStyled>
       )}
       {userAppBarContent ? userAppBarContent(props) : null}

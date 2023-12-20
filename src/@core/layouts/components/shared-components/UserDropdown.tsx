@@ -61,23 +61,28 @@ const UserDropdown = (props: Props) => {
     setAnchorEl(null)
   }
 
-  const styles = {
-    py: 2,
-    px: 4,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    color: 'text.primary',
-    textDecoration: 'none',
-    '& svg': {
-      mr: 2,
-      fontSize: '1.375rem',
-      color: 'text.primary'
-    }
-  }
+  // const styles = {
+  //   py: 2,
+  //   px: 4,
+  //   width: '100%',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   color: 'text.primary',
+  //   textDecoration: 'none',
+  //   '& svg': {
+  //     mr: 2,
+  //     fontSize: '1.375rem',
+  //     color: 'text.primary'
+  //   }
+  // }
 
   const handleLogout = () => {
     logout()
+    handleDropdownClose()
+  }
+
+  const handleGoTo = (path: string) => {
+    router.push(path)
     handleDropdownClose()
   }
 
@@ -127,12 +132,18 @@ const UserDropdown = (props: Props) => {
           </Box>
         </Box>
         <Divider />
-        <MenuItem sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}>
+        <MenuItem
+          sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
+          onClick={() => handleGoTo('/dashboard')}
+        >
           <Icon icon='mdi:person' />
           My Account
         </MenuItem>
         <Divider />
-        <MenuItem sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}>
+        <MenuItem
+          sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
+          onClick={() => handleGoTo('/dashboard/view')}
+        >
           <Icon icon='mdi:shopping-basket' />
           Shop Medallions
         </MenuItem>

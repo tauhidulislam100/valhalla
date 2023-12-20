@@ -27,6 +27,7 @@ const UserThemeOptions = (): ThemeOptions => {
         main: '#252b55'
       }
     }
+
     /*
     palette:{
       primary: {

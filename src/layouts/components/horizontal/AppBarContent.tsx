@@ -5,7 +5,6 @@ import Box from '@mui/material/Box'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Components
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 }
 const AppBarContent = (props: Props) => {
   // ** Props
-  const { settings, saveSettings } = props
+  const { settings } = props
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>

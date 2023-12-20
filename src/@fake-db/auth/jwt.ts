@@ -17,7 +17,7 @@ const users: UserDataType[] = [
     password: 'admin',
     fullName: 'MD Tuhin',
     username: 'tuhin',
-    email: 'admin@turninghearts.com'
+    email: 'admin@valhalla.com'
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const users: UserDataType[] = [
     password: 'client',
     fullName: 'Jane Doe',
     username: 'janedoe',
-    email: 'client@materialize.com'
+    email: 'client@valhalla.com'
   }
 ]
 
