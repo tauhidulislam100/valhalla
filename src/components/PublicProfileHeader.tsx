@@ -3,7 +3,7 @@ import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material'
 import { Box } from '@mui/system'
 import Icon from 'src/@core/components/icon'
 
-export const imageLink = `https://s3.us-east-2.amazonaws.com/turninghearts.bucket/l5uqjil8qst5o01m461inwvcdn3u?response-content-disposition=inline%3B%20filename%3D%22image_processing20230718-1-9pyt6g.jpg%22%3B%20filename%2A%3DUTF-8%27%27image_processing20230718-1-9pyt6g.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5JEEWQS4ORZVYXSI%2F20231219%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231219T123727Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3167ea7ccff913506eb28a3764508853fb63c7a3d1de1f7c1cd333c7c0be4f01`
+export const imageLink = `/images/cover.jpeg`
 
 export const ProfilePicture = styled('img')(() => ({
   width: 180,
