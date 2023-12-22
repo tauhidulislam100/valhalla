@@ -1,9 +1,10 @@
-import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent } from '@mui/material'
+import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent, Fab } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
 import { ProfilePicture, imageLink } from './PublicProfileHeader'
 import Icon from 'src/@core/components/icon'
 import Link from 'next/link'
+import EditFav from './EditFav'
 
 function BasicMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -65,14 +66,17 @@ const AdminProfileHeader = () => {
         }}
       >
         <Box sx={{ transform: 'translateY(-60px)' }}>
-          <ProfilePicture src={imageLink} alt='profile-picture' />
+          <Box sx={{ position: 'relative' }}>
+            <ProfilePicture src={imageLink} alt='profile-picture' />
+            <EditFav sx={{ bottom: 20, right: 3 }} />
+          </Box>
           <Typography sx={{ textAlign: 'center', fontWeight: '600', fontSize: 20, mt: '12px' }}>Vetaran</Typography>
         </Box>
         <Box
           sx={{
             width: '100%',
             display: 'flex',
-            ml: { xs: 0, md: 6 },
+            ml: { xs: 0, md: 10 },
             alignItems: 'flex-start',
             flexWrap: ['wrap', 'nowrap'],
             justifyContent: ['center', 'space-between']
@@ -107,11 +111,11 @@ const AdminProfileHeader = () => {
           </Box>
           <Box>
             <Box sx={{ transform: 'translateY(-50px)', gap: '10px', display: 'flex' }}>
-              <Button variant='outlined' startIcon={<Icon icon='mdi:upload' fontSize={20} />}>
-                upload cover photo
+              <Button variant='contained' startIcon={<Icon icon='mdi:upload' fontSize={20} />}>
+                Update Cover Photo
               </Button>
-              <Button variant='outlined' color='error' startIcon={<Icon icon='mdi:close' fontSize={20} />}>
-                remove cover photo
+              <Button variant='contained' color='secondary' startIcon={<Icon icon='mdi:close' fontSize={20} />}>
+                Remove Cover Photo
               </Button>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>

@@ -9,10 +9,11 @@ import Medallions from 'src/components/Medallions'
 import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
 import { useAuth } from 'src/hooks/useAuth'
 import Icon from 'src/@core/components/icon'
+import EditFav from 'src/components/EditFav'
 
 const Home = () => {
   const { logout } = useAuth()
-  const [value, setValue] = useState(3)
+  const [value, setValue] = useState(2)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -24,12 +25,10 @@ const Home = () => {
         <Card>
           <CardContent style={{ boxShadow: 'none' }}>
             <Box display={'flex'} justifyContent={'space-between'} alignItems={'flex-start'}>
-              <Box flexDirection={'row'} display={'flex'} gap={5} alignItems={'center'}>
+              <Box flexDirection={'row'} display={'flex'} gap={10} alignItems={'center'}>
                 <Box sx={{ position: 'relative' }}>
                   <Avatar sx={{ width: 192, height: 192 }} />
-                  <Fab size='small' color='primary' sx={{ position: 'absolute', bottom: 10, right: 5 }}>
-                    <Icon icon={'mdi:edit'} />
-                  </Fab>
+                  <EditFav sx={{ bottom: 10, right: -2 }} />
                 </Box>
                 <Box>
                   <Typography fontWeight={'bold'} fontSize={22} mb={2}>
