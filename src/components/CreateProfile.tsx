@@ -96,7 +96,7 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
         <Typography>Obituary Information</Typography>
       </Box>
-      <Box>
+      <Box sx={{ mb: 4 }}>
         <InputLabel htmlFor='link-to-obituary'>Link to Obituary:</InputLabel>
         <TextField autoFocus fullWidth id='link-to-obituary' size='small' />
       </Box>
@@ -104,7 +104,24 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
         <InputLabel htmlFor='bio-information'>Bio information:</InputLabel>
         <TextField fullWidth autoFocus id='bio-information' multiline minRows={2} />
       </Box>
+      {hideBack ? (
+        <Box sx={{ my: 4 }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
+            <Typography>Location Before Death</Typography>
+          </Box>
 
+          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
+            <Box flex={1}>
+              <InputLabel htmlFor='city'>City:</InputLabel>
+              <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
+            </Box>
+            <Box flex={1}>
+              <InputLabel htmlFor='state'>State:</InputLabel>
+              <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
+            </Box>
+          </Box>
+        </Box>
+      ) : null}
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
         <Typography>Lifetime</Typography>
       </Box>
@@ -161,19 +178,98 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
         </Box>
       </Box>
 
-      <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
-        <Typography>Location Details</Typography>
-      </Box>
-      <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-        <Box flex={1}>
-          <InputLabel htmlFor='state'>State:</InputLabel>
-          <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
+      {hideBack ? (
+        <Box sx={{ my: 4 }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
+            <Typography>Cemetery information</Typography>
+          </Box>
+
+          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
+            <Box flex={1}>
+              <InputLabel htmlFor='city'>Cemetery name:</InputLabel>
+              <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
+            </Box>
+            <Box flex={1}>
+              <InputLabel htmlFor='state'>Cemetery plot number:</InputLabel>
+              <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
+            </Box>
+          </Box>
+          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
+            <Box flex={1}>
+              <InputLabel htmlFor='city'>Cemetery city:</InputLabel>
+              <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
+            </Box>
+            <Box flex={1}>
+              <InputLabel htmlFor='state'>Cemetery state:</InputLabel>
+              <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
+            </Box>
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <button
+              style={{
+                border: '1px solid rgb(219 219 223)',
+                borderTopLeftRadius: 8,
+                borderBottomLeftRadius: 8,
+                fontWeight: 600,
+                fontSize: 14,
+                background: '#e9ecef',
+                color: '#212529'
+              }}
+            >
+              Set Location:
+            </button>
+            <input
+              style={{
+                flex: 1,
+                display: 'flex',
+                border: '1px solid rgb(219 219 223)',
+                borderLeft: 'none',
+                borderRight: 'none',
+                padding: '12px 8px',
+                background: '#fff'
+              }}
+              disabled
+            />
+            <button
+              style={{
+                display: 'inline-flex',
+                border: 'none',
+                backgroundColor: '#e9ecef',
+                alignItems: 'center'
+              }}
+            >
+              <Icon icon={'mdi:insert-drive-file'} fontSize={14} color='#212529' />
+            </button>
+          </Box>
+
+          <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
+            <Typography>Donations</Typography>
+          </Box>
+
+          <Box flex={1}>
+            <InputLabel htmlFor='city'>Donation URL:</InputLabel>
+            <TextField autoFocus fullWidth id='city' placeholder='' size='small' />
+          </Box>
         </Box>
-        <Box flex={1}>
-          <InputLabel htmlFor='city'>City:</InputLabel>
-          <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
-        </Box>
-      </Box>
+      ) : null}
+
+      {!hideBack ? (
+        <>
+          <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
+            <Typography>Location Details</Typography>
+          </Box>
+          <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
+            <Box flex={1}>
+              <InputLabel htmlFor='state'>State:</InputLabel>
+              <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
+            </Box>
+            <Box flex={1}>
+              <InputLabel htmlFor='city'>City:</InputLabel>
+              <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
+            </Box>
+          </Box>
+        </>
+      ) : null}
 
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
         <Typography>Quote Section</Typography>
@@ -181,6 +277,11 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
       <InputLabel>Text or phrase:</InputLabel>
       <TextField multiline minRows={2} autoFocus fullWidth id='quote' placeholder='Quote' />
       <FormHelperText>This headline text is the one that shows above the name of the person.</FormHelperText>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 5 }}>
+        <Button color='secondary' variant='contained' startIcon={<Icon icon={'mdi:check'} />}>
+          Save Changes
+        </Button>
+      </Box>
     </>
   )
 }

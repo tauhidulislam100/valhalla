@@ -9,6 +9,7 @@ import Medallions from 'src/components/Medallions'
 import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
 import { useAuth } from 'src/hooks/useAuth'
 import EditFav from 'src/components/EditFav'
+import Icon from 'src/@core/components/icon'
 
 const Home = () => {
   const { logout } = useAuth()
@@ -33,13 +34,18 @@ const Home = () => {
                   <Typography fontWeight={'bold'} fontSize={22} mb={2}>
                     MD Tuhin
                   </Typography>
-                  <Box display={'flex'} gap={4} mb={1}>
-                    <Typography fontWeight={'semibold'}>Email:</Typography>
+                  <Box display={'flex'} gap={4} mb={1} fontSize={'0.9375rem'}>
+                    <Typography fontWeight={500}>Email:</Typography>
                     <Typography>tauhidulislam100@gmail.com</Typography>
                   </Box>
                   <Box display={'flex'} gap={4}>
-                    <Typography fontWeight={'semibold'}>Joined:</Typography>
-                    <Typography>calendar Joined about 17 hours ago</Typography>
+                    <Typography fontWeight={500} fontSize={'0.9375rem'}>
+                      Joined:
+                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.9375rem', fontWeight: 500 }}>
+                      <Icon icon={'mdi:calendar'} fontSize={16} />
+                      <Typography>calendar Joined about 17 hours ago</Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
@@ -52,7 +58,10 @@ const Home = () => {
                   width: '346px'
                 }}
               >
-                <Typography mb={'4px'}>Welcome back!</Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography sx={{ fontWeight: 'bold' }}>Welcome back!</Typography>
+                  <Icon icon='mdi:info' fontSize={20} />
+                </Box>
                 <Typography>
                   Thank you for choosing Turning Hearts to keep the memory of your loved ones alive. We are honored to
                   be a part of your healing journey.
@@ -62,10 +71,10 @@ const Home = () => {
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered>
-                <Tab label='My Favorites' {...a11yProps(0, 'home')} />
-                <Tab label='Post' {...a11yProps(1, 'home')} />
-                <Tab label='Medallions' {...a11yProps(2, 'home')} />
-                <Tab label='My account' {...a11yProps(3, 'home')} />
+                <Tab className='tab-title' label='My Favorites' {...a11yProps(0, 'home')} />
+                <Tab className='tab-title' label='Post' {...a11yProps(1, 'home')} />
+                <Tab className='tab-title' label='Medallions' {...a11yProps(2, 'home')} />
+                <Tab className='tab-title' label='My account' {...a11yProps(3, 'home')} />
               </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0} id='home'>

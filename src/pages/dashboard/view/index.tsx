@@ -35,11 +35,11 @@ const ProfileView = () => {
         <CardContent>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered>
-              <Tab label='About' {...a11yProps(0, 'settings')} />
-              <Tab label='Photos' {...a11yProps(1, 'settings')} />
-              <Tab label='Videos' {...a11yProps(2, 'settings')} />
-              <Tab label='Tributes' {...a11yProps(3, 'settings')} />
-              <Tab label='Details' {...a11yProps(4, 'settings')} />
+              <Tab className='tab-title' label='About' {...a11yProps(0, 'settings')} />
+              <Tab className='tab-title' label='Photos' {...a11yProps(1, 'settings')} />
+              <Tab className='tab-title' label='Videos' {...a11yProps(2, 'settings')} />
+              <Tab className='tab-title' label='Tributes' {...a11yProps(3, 'settings')} />
+              <Tab className='tab-title' label='Details' {...a11yProps(4, 'settings')} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0} id='settings'>

@@ -43,7 +43,7 @@ const AdminTabs = () => {
         <Tab
           label={
             <Badge badgeContent={1} color='secondary'>
-              Profile Admins
+              <span className='tab-title'>Profile Admins</span>
             </Badge>
           }
           {...a11yProps(0, 'admin')}
@@ -51,7 +51,7 @@ const AdminTabs = () => {
         <Tab
           label={
             <Badge badgeContent={0} color='secondary'>
-              Pending Invitations
+              <span className='tab-title'>Pending Invitations</span>
             </Badge>
           }
           {...a11yProps(1, 'admin')}

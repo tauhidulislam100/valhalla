@@ -111,12 +111,18 @@ const AdminProfileHeader = () => {
           </Box>
           <Box>
             <Box sx={{ transform: 'translateY(-50px)', gap: '10px', display: 'flex' }}>
-              <Button variant='contained' startIcon={<Icon icon='mdi:upload' fontSize={20} />}>
+              <button className='upload-cover'>
+                <span>
+                  <Icon icon='mdi:upload' fontSize={20} />
+                </span>
                 Update Cover Photo
-              </Button>
-              <Button variant='contained' color='secondary' startIcon={<Icon icon='mdi:close' fontSize={20} />}>
+              </button>
+              <button className='remove-cover upload-cover'>
+                <span>
+                  <Icon icon='mdi:close' fontSize={20} />
+                </span>
                 Remove Cover Photo
-              </Button>
+              </button>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', gap: '10px' }}>

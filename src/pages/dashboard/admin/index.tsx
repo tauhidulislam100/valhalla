@@ -37,11 +37,11 @@ const AdminPage = () => {
         <CardContent>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-              <Tab label='About' {...a11yProps(0, 'profile')} />
-              <Tab label='Images' {...a11yProps(1, 'profile')} />
-              <Tab label='Videos' {...a11yProps(2, 'profile')} />
-              <Tab label='Details' {...a11yProps(3, 'profile')} />
-              <Tab label='Admins' {...a11yProps(4, 'profile')} />
+              <Tab className='tab-title' label='About' {...a11yProps(0, 'profile')} />
+              <Tab className='tab-title' label='Images' {...a11yProps(1, 'profile')} />
+              <Tab className='tab-title' label='Videos' {...a11yProps(2, 'profile')} />
+              <Tab className='tab-title' label='Details' {...a11yProps(3, 'profile')} />
+              <Tab className='tab-title' label='Admins' {...a11yProps(4, 'profile')} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0} id='profile'>

@@ -115,8 +115,8 @@ const Medallions = () => {
         <>
           <Box>
             <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-              <Tab label='Profiles' {...a11yProps(0, 'medallions')} />
-              <Tab label='Groups' {...a11yProps(1, 'medallions')} />
+              <Tab className='tab-title' label='Profiles' {...a11yProps(0, 'medallions')} />
+              <Tab className='tab-title' label='Groups' {...a11yProps(1, 'medallions')} />
             </Tabs>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
