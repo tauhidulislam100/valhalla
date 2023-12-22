@@ -3,12 +3,11 @@ import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import { Avatar, Box, Button, Fab, InputLabel, Tab, Tabs, TextField } from '@mui/material'
+import { Avatar, Box, Button, InputLabel, Tab, Tabs, TextField } from '@mui/material'
 import { useState } from 'react'
 import Medallions from 'src/components/Medallions'
 import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
 import { useAuth } from 'src/hooks/useAuth'
-import Icon from 'src/@core/components/icon'
 import EditFav from 'src/components/EditFav'
 
 const Home = () => {

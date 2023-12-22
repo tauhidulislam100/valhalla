@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent, Fab } from '@mui/material'
+import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
 import { ProfilePicture, imageLink } from './PublicProfileHeader'
