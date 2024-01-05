@@ -105,7 +105,12 @@ const UserDropdown = (props: Props) => {
           src='/images/avatars/1.png'
         />
       </Badge> */}
-      <Avatar alt='John Doe' onClick={handleDropdownOpen} sx={{ width: 40, height: 40 }} src='/images/avatars/1.png' />
+      <Avatar
+        alt='John Doe'
+        onClick={handleDropdownOpen}
+        sx={{ width: 40, height: 40, cursor: 'pointer' }}
+        src='/images/avatars/1.png'
+      />
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

@@ -3,13 +3,112 @@ import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import { Avatar, Box, Button, InputLabel, Tab, Tabs, TextField } from '@mui/material'
+import { Avatar, Box, Button, InputLabel, Menu, MenuItem, Tab, Tabs, TextField, useTheme } from '@mui/material'
 import { useState } from 'react'
 import Medallions from 'src/components/Medallions'
 import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
 import { useAuth } from 'src/hooks/useAuth'
 import EditFav from 'src/components/EditFav'
 import Icon from 'src/@core/components/icon'
+import RemoveFavoriteModal from 'src/components/RemoveFavoriteModal'
+
+export const FavoriteCard = ({
+  width = '380px',
+  onView,
+  onEdit
+}: {
+  width?: string
+  onView?: () => void
+  onEdit?: () => void
+}) => {
+  const [open, setOpen] = useState(false)
+  const theme = useTheme()
+
+  return (
+    <Box sx={{ maxWidth: width }}>
+      <Card>
+        <CardContent>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <button
+              onClick={() => setOpen(true)}
+              style={{ background: 'none', border: 'none', color: theme.palette.primary.main, cursor: 'pointer' }}
+            >
+              <Icon icon={'mdi:heart'} fontSize={32} />
+            </button>
+            <FavoriteMenu />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              mb: '10px'
+            }}
+          >
+            <Avatar sx={{ width: 192, height: 192, mb: 5 }} />
+            <Typography fontWeight={700} color={'secondary'}>
+              084398438
+            </Typography>
+            <Typography color={'secondary'}>Lifetime</Typography>
+            <Typography my={'5px'}>Aug 15, 2023 - Aug 16, 2023</Typography>
+          </Box>
+
+          <Box display={'flex'} justifyContent={'center'} gap={10} mt={5}>
+            <Button onClick={onView} sx={{ display: 'flex', gap: 2 }} variant='contained'>
+              <Icon icon={'mdi:visibility'} /> View
+            </Button>
+
+            <Button onClick={onEdit} sx={{ gap: 2, display: 'flex' }} variant='contained' color='secondary'>
+              <Icon icon={'mdi:share'} /> Share
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+
+      <RemoveFavoriteModal onClose={() => setOpen(false)} open={open} />
+    </Box>
+  )
+}
+
+function FavoriteMenu() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div>
+      <button
+        id='basic-button'
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup='true'
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+      >
+        <Icon icon={'mdi:more-horiz'} />
+      </button>
+      <Menu
+        id='basic-menu'
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button'
+        }}
+      >
+        <MenuItem onClick={handleClose}>
+          <Typography color={'red'}>Delete Favorite</Typography>
+        </MenuItem>
+      </Menu>
+    </div>
+  )
+}
 
 const Home = () => {
   const { logout } = useAuth()
@@ -78,10 +177,34 @@ const Home = () => {
               </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0} id='home'>
-              <Typography>My Favorites</Typography>
+              <Typography sx={{ fontSize: '18px', fontWeight: 'bold', mb: 4 }}>My Favorites</Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                <FavoriteCard />
+              </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1} id='home'>
-              <Typography>Post</Typography>
+              <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}>My Post</Typography>
+              <Box sx={{ my: 5 }}>
+                <Card>
+                  <CardContent>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <Avatar sx={{ width: 80, height: 80 }} />
+                        <Box sx={{ display: 'flex' }}>
+                          <Typography sx={{ fontWeight: 600, fontSize: 18 }}>Md Tuhin</Typography>
+                          <Icon icon={'mdi:dot'} />
+                          <Typography>37 minutes ago</Typography>
+                        </Box>
+                      </Box>
+                      <Icon icon={'mdi:more-horiz'} />
+                    </Box>
+                    <Box sx={{ mt: 3 }}>
+                      <Typography>some thing new</Typography>
+                      <Typography>something is old</Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2} id='home'>
               <Medallions />

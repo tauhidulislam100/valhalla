@@ -8,7 +8,6 @@ import Link from 'next/link'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
@@ -19,7 +18,6 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled } from '@mui/material/styles'
 import MuiCard, { CardProps } from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
-import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -41,13 +39,6 @@ interface State {
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: 450 }
-}))
-
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
-  '& .MuiFormControlLabel-label': {
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary
-  }
 }))
 
 const LoginV1 = () => {
@@ -88,7 +79,7 @@ const LoginV1 = () => {
           </Box>
           <Box sx={{ mb: 6, textAlign: 'center' }}>
             <Typography variant='h5' sx={{ mb: 1.5, fontWeight: 600, letterSpacing: '0.18px' }}>
-              Welcome back!
+              Welcome!
             </Typography>
             <Typography variant='body2'>Please enter your email and password below.</Typography>
           </Box>
@@ -116,30 +107,14 @@ const LoginV1 = () => {
                 }
               />
             </FormControl>
-            <Box
-              sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
-            >
-              <FormControlLabel
-                label='Remember Me'
-                control={<Checkbox />}
-                sx={{ '& .MuiFormControlLabel-label': { color: 'text.primary' } }}
-              />
-              <Typography
-                variant='body2'
-                component={Link}
-                href='/pages/auth/forgot-password-v1'
-                sx={{ color: 'primary.main', textDecoration: 'none' }}
-              >
-                Forgot Password?
-              </Typography>
-            </Box>
-            <Button onClick={handleLocalLogin} fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>
-              Login
+
+            <Button onClick={handleLocalLogin} fullWidth size='large' type='submit' variant='contained' sx={{ my: 7 }}>
+              Register
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <Typography sx={{ mr: 2, color: 'text.secondary' }}>New on our platform?</Typography>
-              <Typography component={Link} href='/register' sx={{ color: 'primary.main', textDecoration: 'none' }}>
-                Create an account
+              <Typography sx={{ mr: 2, color: 'text.secondary' }}>Already have an account?</Typography>
+              <Typography component={Link} href='/login' sx={{ color: 'primary.main', textDecoration: 'none' }}>
+                Login
               </Typography>
             </Box>
             <Divider
