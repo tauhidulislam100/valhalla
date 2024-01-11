@@ -85,7 +85,7 @@ const AddMemberModal = ({ open = false, onClose }: { open: boolean; onClose?: ()
         </Box>
       </DialogContent>
       <DialogActions>
-        <Box display={'flex'} justifyContent={'space-between'} sx={{ width: '100%' }}>
+        <Box display={'flex'} justifyContent={'space-between'} sx={{ width: '100%' }} flexWrap={'wrap'}>
           <Box sx={{ display: 'flex', gap: 5 }}>
             <Button onClick={onClose} variant='outlined' color='secondary'>
               Cancel

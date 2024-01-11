@@ -9,7 +9,7 @@ import Icon from 'src/@core/components/icon'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Components
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
+// import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 
 interface Props {
@@ -21,7 +21,7 @@ interface Props {
 
 const AppBarContent = (props: Props) => {
   // ** Props
-  const { hidden, settings, saveSettings, toggleNavVisibility } = props
+  const { hidden, settings, toggleNavVisibility } = props
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -32,7 +32,7 @@ const AppBarContent = (props: Props) => {
           </IconButton>
         ) : null}
 
-        <ModeToggler settings={settings} saveSettings={saveSettings} />
+        {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
         <UserDropdown settings={settings} />

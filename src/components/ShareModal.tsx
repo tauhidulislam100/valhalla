@@ -33,7 +33,7 @@ const ShareModal = ({ open = false, onClose }: { open: boolean; onClose?: () => 
         </button>
       </DialogTitle>
       <DialogContent>
-        <Box sx={{ justifyContent: 'center', display: 'flex', gap: 5 }}>
+        <Box sx={{ justifyContent: 'center', display: 'flex', gap: 5, flexWrap: 'wrap' }}>
           <SocialIconContainer icon='mdi:facebook' name='Facebook' color='#0f6fec' />
           <SocialIconContainer icon='mdi:twitter' name='Twitter' color='#4f9ef8' />
           <SocialIconContainer icon='mdi:pinterest' name='Pinterest' color='#d6293e' />

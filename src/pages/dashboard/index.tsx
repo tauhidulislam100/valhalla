@@ -3,112 +3,70 @@ import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import { Avatar, Box, Button, InputLabel, Menu, MenuItem, Tab, Tabs, TextField, useTheme } from '@mui/material'
+import { Avatar, Box, Button, InputLabel, Tab, Tabs, TextField, styled } from '@mui/material'
 import { useState } from 'react'
 import Medallions from 'src/components/Medallions'
 import { CustomTabPanel, a11yProps } from 'src/components/CustomTab'
 import { useAuth } from 'src/hooks/useAuth'
 import EditFav from 'src/components/EditFav'
 import Icon from 'src/@core/components/icon'
-import RemoveFavoriteModal from 'src/components/RemoveFavoriteModal'
+import { FavoriteCard } from 'src/components/FavoriteCard'
 
-export const FavoriteCard = ({
-  width = '380px',
-  onView,
-  onEdit
-}: {
-  width?: string
-  onView?: () => void
-  onEdit?: () => void
-}) => {
-  const [open, setOpen] = useState(false)
-  const theme = useTheme()
-
-  return (
-    <Box sx={{ maxWidth: width }}>
-      <Card>
-        <CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button
-              onClick={() => setOpen(true)}
-              style={{ background: 'none', border: 'none', color: theme.palette.primary.main, cursor: 'pointer' }}
-            >
-              <Icon icon={'mdi:heart'} fontSize={32} />
-            </button>
-            <FavoriteMenu />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              mb: '10px'
-            }}
-          >
-            <Avatar sx={{ width: 192, height: 192, mb: 5 }} />
-            <Typography fontWeight={700} color={'secondary'}>
-              084398438
-            </Typography>
-            <Typography color={'secondary'}>Lifetime</Typography>
-            <Typography my={'5px'}>Aug 15, 2023 - Aug 16, 2023</Typography>
-          </Box>
-
-          <Box display={'flex'} justifyContent={'center'} gap={10} mt={5}>
-            <Button onClick={onView} sx={{ display: 'flex', gap: 2 }} variant='contained'>
-              <Icon icon={'mdi:visibility'} /> View
-            </Button>
-
-            <Button onClick={onEdit} sx={{ gap: 2, display: 'flex' }} variant='contained' color='secondary'>
-              <Icon icon={'mdi:share'} /> Share
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
-
-      <RemoveFavoriteModal onClose={() => setOpen(false)} open={open} />
-    </Box>
-  )
-}
-
-function FavoriteMenu() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
+const WelcomeCard = styled(Box)(({ theme }) => ({
+  background: '#f7ecd4',
+  border: '1px solid #d7a229',
+  borderRadius: '8px',
+  padding: '20px',
+  width: '346px',
+  [theme.breakpoints.down('lg')]: {
+    display: 'none'
   }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+}))
 
-  return (
-    <div>
-      <button
-        id='basic-button'
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup='true'
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-        style={{ border: 'none', background: 'none', cursor: 'pointer' }}
-      >
-        <Icon icon={'mdi:more-horiz'} />
-      </button>
-      <Menu
-        id='basic-menu'
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button'
-        }}
-      >
-        <MenuItem onClick={handleClose}>
-          <Typography color={'red'}>Delete Favorite</Typography>
-        </MenuItem>
-      </Menu>
-    </div>
-  )
-}
+const AvatarContainerWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  [theme.breakpoints.down('sm')]: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+}))
+
+const AvatarContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 10,
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+}))
+
+const InputGroup = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 10,
+  marginTop: '10px',
+  marginBottom: '10px',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column'
+  }
+}))
+
+const EmailContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: 4,
+  mb: 1,
+  fontSize: '0.9375rem',
+  [theme.breakpoints.down('sm')]: {
+    justifyContent: 'center'
+  }
+}))
 
 const Home = () => {
   const { logout } = useAuth()
@@ -123,9 +81,9 @@ const Home = () => {
       <Grid item xs={12}>
         <Card>
           <CardContent style={{ boxShadow: 'none' }}>
-            <Box display={'flex'} justifyContent={'space-between'} alignItems={'flex-start'}>
-              <Box flexDirection={'row'} display={'flex'} gap={10} alignItems={'center'}>
-                <Box sx={{ position: 'relative' }}>
+            <AvatarContainerWrapper>
+              <AvatarContainer>
+                <Box sx={{ position: 'relative' }} className='abc'>
                   <Avatar sx={{ width: 192, height: 192 }} />
                   <EditFav sx={{ bottom: 10, right: -2 }} />
                 </Box>
@@ -133,30 +91,32 @@ const Home = () => {
                   <Typography fontWeight={'bold'} fontSize={22} mb={2}>
                     MD Tuhin
                   </Typography>
-                  <Box display={'flex'} gap={4} mb={1} fontSize={'0.9375rem'}>
+                  <EmailContainer>
                     <Typography fontWeight={500}>Email:</Typography>
-                    <Typography>tauhidulislam100@gmail.com</Typography>
-                  </Box>
+                    <Typography sx={{ sm: { fontSize: '0.9375rem' }, fontSize: 12, fontWeight: 500 }}>
+                      tauhidulislam100@gmail.com
+                    </Typography>
+                  </EmailContainer>
                   <Box display={'flex'} gap={4}>
                     <Typography fontWeight={500} fontSize={'0.9375rem'}>
                       Joined:
                     </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.9375rem', fontWeight: 500 }}>
-                      <Icon icon={'mdi:calendar'} fontSize={16} />
-                      <Typography>calendar Joined about 17 hours ago</Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 1
+                      }}
+                    >
+                      <Icon icon={'mdi:calendar'} fontSize={14} />
+                      <Typography sx={{ sm: { fontSize: '0.9375rem' }, fontSize: 12, fontWeight: 500 }}>
+                        calendar Joined about 17 hours
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
-              </Box>
-              <Box
-                sx={{
-                  background: '#f7ecd4',
-                  border: '1px solid #d7a229',
-                  borderRadius: '8px',
-                  padding: '20px',
-                  width: '346px'
-                }}
-              >
+              </AvatarContainer>
+              <WelcomeCard>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                   <Typography sx={{ fontWeight: 'bold' }}>Welcome back!</Typography>
                   <Icon icon='mdi:info' fontSize={20} />
@@ -165,11 +125,11 @@ const Home = () => {
                   Thank you for choosing Turning Hearts to keep the memory of your loved ones alive. We are honored to
                   be a part of your healing journey.
                 </Typography>
-              </Box>
-            </Box>
+              </WelcomeCard>
+            </AvatarContainerWrapper>
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered>
+              <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered variant='scrollable'>
                 <Tab className='tab-title' label='My Favorites' {...a11yProps(0, 'home')} />
                 <Tab className='tab-title' label='Post' {...a11yProps(1, 'home')} />
                 <Tab className='tab-title' label='Medallions' {...a11yProps(2, 'home')} />
@@ -190,7 +150,7 @@ const Home = () => {
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Avatar sx={{ width: 80, height: 80 }} />
-                        <Box sx={{ display: 'flex' }}>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                           <Typography sx={{ fontWeight: 600, fontSize: 18 }}>Md Tuhin</Typography>
                           <Icon icon={'mdi:dot'} />
                           <Typography>37 minutes ago</Typography>
@@ -213,7 +173,7 @@ const Home = () => {
               <Typography fontWeight={600} fontSize={16}>
                 Edit Profile
               </Typography>
-              <Box display={'flex'} justifyContent={'flex-end'}>
+              <Box display={'flex'} justifyContent={'flex-end'} my={5}>
                 <Button onClick={logout} size='large' type='submit' variant='contained'>
                   Change Password
                 </Button>
@@ -221,29 +181,29 @@ const Home = () => {
               <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', mb: '32px' }}>
                 <Typography>Personal Details</Typography>
               </Box>
-              <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-                <Box flex={1}>
+              <InputGroup>
+                <Box flex={1} width={'100%'}>
                   <InputLabel htmlFor='firstName'>First Name:</InputLabel>
                   <TextField autoFocus fullWidth id='firstName' placeholder='First Name' size='small' />
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} width={'100%'}>
                   <InputLabel htmlFor='lastName'>Last Name:</InputLabel>
                   <TextField autoFocus fullWidth id='lastName' placeholder='Last Name' size='small' />
                 </Box>
-              </Box>
+              </InputGroup>
               <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
                 <Typography>Location Details</Typography>
               </Box>
-              <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-                <Box flex={1}>
+              <InputGroup>
+                <Box flex={1} width={'100%'}>
                   <InputLabel htmlFor='state'>State:</InputLabel>
                   <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} width={'100%'}>
                   <InputLabel htmlFor='city'>City:</InputLabel>
                   <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
                 </Box>
-              </Box>
+              </InputGroup>
               <Box display={'flex'} justifyContent={'flex-end'} sx={{ mt: 10 }}>
                 <Button size='large' type='submit' variant='contained' color='secondary'>
                   Save Changes

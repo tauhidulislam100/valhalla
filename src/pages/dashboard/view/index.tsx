@@ -34,7 +34,7 @@ const ProfileView = () => {
       <Card sx={{ mt: 10 }}>
         <CardContent>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered>
+            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' centered variant='scrollable'>
               <Tab className='tab-title' label='About' {...a11yProps(0, 'settings')} />
               <Tab className='tab-title' label='Photos' {...a11yProps(1, 'settings')} />
               <Tab className='tab-title' label='Videos' {...a11yProps(2, 'settings')} />
@@ -78,7 +78,7 @@ const ProfileView = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box sx={{ display: 'flex', gap: 4, alignItems: 'center' }}>
                     <Avatar sx={{ width: 50, height: 50 }} />
-                    <Box sx={{ display: 'flex', gap: '2px' }}>
+                    <Box sx={{ display: 'flex', gap: '2px', flexWrap: 'wrap' }}>
                       <Typography sx={{ fontWeight: 700 }}>MD Tuhin</Typography>
                       <Icon icon={`mdi:dot`} />
                       <Typography>2 days ago</Typography>
@@ -148,9 +148,9 @@ const ProfileView = () => {
             </Box>
             <Card sx={{ mt: 5 }}>
               <CardContent>
-                <Box sx={{ display: 'flex', gap: '10px' }}>
+                <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                   <Avatar variant='square' sx={{ width: 60, height: 60 }} />
-                  <Box sx={{ ml: 20 }}>
+                  <Box sx={{ sm: { ml: 20 } }}>
                     <Typography sx={{ color: 'black', fontWeight: 500 }}>Facebook</Typography>
                     <a href='https://www.facebook.com'>https://www.facebook.com</a>
                   </Box>

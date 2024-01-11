@@ -20,7 +20,15 @@ const EditGroup = () => {
             </Button>
           </Box>
           <Box mt={10} sx={{ borderBottom: '1px solid #ddd', pb: 10, mb: 10 }}>
-            <Box sx={{ display: 'flex', gap: 10 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 10,
+                flexWrap: 'wrap',
+                sm: { justifyContent: 'start' },
+                justifyContent: 'center'
+              }}
+            >
               <Box sx={{ position: 'relative' }}>
                 <Avatar sx={{ width: 192, height: 192 }} />
                 <Fab size='small' color='primary' sx={{ position: 'absolute', bottom: 20, right: 15 }}>
@@ -44,7 +52,15 @@ const EditGroup = () => {
               </Button>
             </Box>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              xs: { justifyContent: 'center' },
+              justifyContent: 'space-between',
+              mb: 5,
+              flexWrap: 'wrap'
+            }}
+          >
             <Typography sx={{ fontWeight: 700, fontSize: 16 }}>Profiles</Typography>
             <Button
               onClick={() => setOpen(true)}

@@ -1,10 +1,26 @@
-import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent } from '@mui/material'
+import { Button, Menu, MenuItem, Typography, Card, CardMedia, CardContent, styled } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
 import { ProfilePicture, imageLink } from './PublicProfileHeader'
 import Icon from 'src/@core/components/icon'
 import Link from 'next/link'
 import EditFav from './EditFav'
+
+const UploadBtnContainer = styled(Box)(({ theme }) => ({
+  gap: '10px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  [theme.breakpoints.down('xl')]: {
+    transform: 'translateY(-50px)'
+  },
+  [theme.breakpoints.up('xl')]: {
+    transform: 'translateY(-50px)'
+  },
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'center',
+    display: 'none'
+  }
+}))
 
 function BasicMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -110,7 +126,7 @@ const AdminProfileHeader = () => {
             </Link>
           </Box>
           <Box>
-            <Box sx={{ transform: 'translateY(-50px)', gap: '10px', display: 'flex' }}>
+            <UploadBtnContainer>
               <button className='upload-cover'>
                 <span>
                   <Icon icon='mdi:upload' fontSize={20} />
@@ -123,7 +139,7 @@ const AdminProfileHeader = () => {
                 </span>
                 Remove Cover Photo
               </button>
-            </Box>
+            </UploadBtnContainer>
             <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', gap: '10px' }}>
                 <Typography fontWeight={600}>Profile status:</Typography>

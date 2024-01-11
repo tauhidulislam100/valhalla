@@ -29,7 +29,7 @@ const AdminTabs = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 5 }}>
         <Button
           onClick={() => setOpen(true)}
           variant='contained'

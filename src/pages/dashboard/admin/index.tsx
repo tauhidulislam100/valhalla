@@ -36,7 +36,7 @@ const AdminPage = () => {
       <Card sx={{ mt: 10 }}>
         <CardContent>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
+            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example' variant='scrollable'>
               <Tab className='tab-title' label='About' {...a11yProps(0, 'profile')} />
               <Tab className='tab-title' label='Images' {...a11yProps(1, 'profile')} />
               <Tab className='tab-title' label='Videos' {...a11yProps(2, 'profile')} />
@@ -48,7 +48,7 @@ const AdminPage = () => {
             <CreateProfile hideBack />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1} id='profile'>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 5 }}>
               <Button
                 onClick={() => setOpenImageModal(true)}
                 variant='contained'
@@ -64,7 +64,7 @@ const AdminPage = () => {
             </Box>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2} id='profile'>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 5 }}>
               <Button
                 onClick={() => setOpenVideoModal(true)}
                 variant='contained'
@@ -74,6 +74,7 @@ const AdminPage = () => {
                 Add Video
               </Button>
             </Box>
+
             <YoutubeEmbedCard embedId='5NgNicANyqM' />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={3} id='profile'>
@@ -89,9 +90,17 @@ const AdminPage = () => {
             </Box>
             <Card sx={{ mt: 5 }}>
               <CardContent>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    gap: 5
+                  }}
+                >
                   <Typography>Facebook</Typography>
-                  <Box sx={{ display: 'flex', gap: '10px' }}>
+                  <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                     <Button variant='contained' color='secondary' startIcon={<Icon icon={'mdi:edit'} />}>
                       Edit
                     </Button>

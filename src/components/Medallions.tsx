@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, CardContent, Tab, Tabs, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardContent, Tab, Tabs, Typography, styled } from '@mui/material'
 import React, { useState } from 'react'
 import Icon from 'src/@core/components/icon'
 
@@ -8,6 +8,12 @@ import { CreateGroup } from './CreateGroup'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import { useRouter } from 'next/router'
+
+const CardContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    width: '100%'
+  }
+}))
 
 export const ProfileCard = ({
   width = '380px',
@@ -19,7 +25,7 @@ export const ProfileCard = ({
   onEdit?: () => void
 }) => {
   return (
-    <Box sx={{ maxWidth: width }}>
+    <CardContainer sx={{ width }}>
       <Card>
         <CardContent>
           <Box
@@ -51,7 +57,7 @@ export const ProfileCard = ({
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </CardContainer>
   )
 }
 
@@ -65,7 +71,7 @@ export const GroupCard = ({
   onEdit?: () => void
 }) => {
   return (
-    <Box sx={{ maxWidth: width }}>
+    <CardContainer sx={{ width }}>
       <Card>
         <CardContent>
           <Box
@@ -95,7 +101,7 @@ export const GroupCard = ({
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </CardContainer>
   )
 }
 
@@ -119,7 +125,7 @@ const Medallions = () => {
               <Tab className='tab-title' label='Groups' {...a11yProps(1, 'medallions')} />
             </Tabs>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', my: 5 }}>
             <Button
               onClick={() => {
                 setShowProfileForm(value === 0)

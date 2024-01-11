@@ -9,13 +9,30 @@ import {
   Input,
   FormControlLabel,
   Checkbox,
-  InputAdornment
+  InputAdornment,
+  styled
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
 import Icon from 'src/@core/components/icon'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import DatePicker from 'react-datepicker'
+
+const InputGroup = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 10,
+  marginTop: '10px',
+  marginBottom: '10px',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column'
+  }
+}))
+const InputGroupContainer = styled(Box)(() => ({
+  width: '100%',
+  flex: 1
+}))
 
 export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideBack?: boolean }) => {
   const [date, setDate] = useState<Date>(new Date())
@@ -32,28 +49,28 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', mb: '32px' }}>
         <Typography>Personal Details</Typography>
       </Box>
-      <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-        <Box flex={1}>
+      <InputGroup>
+        <InputGroupContainer>
           <InputLabel htmlFor='firstName'>First Name:</InputLabel>
           <TextField autoFocus fullWidth id='firstName' placeholder='First Name' size='small' />
-        </Box>
-        <Box flex={1}>
+        </InputGroupContainer>
+        <InputGroupContainer>
           <InputLabel htmlFor='middleName'>Middle Name:</InputLabel>
           <TextField autoFocus fullWidth id='middleName' placeholder='Middle Name' size='small' />
-        </Box>
-        <Box flex={1}>
+        </InputGroupContainer>
+        <InputGroupContainer>
           <InputLabel htmlFor='lastName'>Last Name:</InputLabel>
           <TextField autoFocus fullWidth id='lastName' placeholder='Last Name' size='small' />
-        </Box>
-      </Box>
-      <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-        <Box flex={1}>
+        </InputGroupContainer>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupContainer>
           <InputLabel htmlFor='title'>Title:</InputLabel>
           <TextField autoFocus fullWidth id='title' placeholder='Title' size='small' />
           <FormHelperText>(Example Jr - Sr)</FormHelperText>
-        </Box>
+        </InputGroupContainer>
 
-        <Box flex={1}>
+        <InputGroupContainer>
           <InputLabel id='demo-simple-select-helper-label'>Relationship</InputLabel>
           <Select defaultValue='' id='demo-simple-select-helper' size='small' fullWidth>
             <MenuItem value=''>
@@ -63,8 +80,9 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
-        </Box>
-      </Box>
+          <FormHelperText>&nbsp;</FormHelperText>
+        </InputGroupContainer>
+      </InputGroup>
       <Box display={'flex'} justifyContent={'space-between'}>
         <Box width={'88%'}>
           <Input type='file' fullWidth />
@@ -78,16 +96,16 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
         <Typography>Headline text</Typography>
       </Box>
-      <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-        <Box flex={1}>
+      <InputGroup>
+        <InputGroupContainer>
           <InputLabel htmlFor='state'>Text or phrase:</InputLabel>
           <TextField autoFocus fullWidth id='state' placeholder='In loving memory of' size='small' />
           <FormHelperText>
             This headline text is the one that shows above the name of the person. If this field is null, the headline
             text won’t be added.
           </FormHelperText>
-        </Box>
-      </Box>
+        </InputGroupContainer>
+      </InputGroup>
 
       <FormControlLabel
         label='Don’t include headline text'
@@ -110,23 +128,23 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
             <Typography>Location Before Death</Typography>
           </Box>
 
-          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
-            <Box flex={1}>
+          <InputGroup>
+            <InputGroupContainer>
               <InputLabel htmlFor='city'>City:</InputLabel>
               <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
-            </Box>
-            <Box flex={1}>
+            </InputGroupContainer>
+            <InputGroupContainer>
               <InputLabel htmlFor='state'>State:</InputLabel>
               <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
-            </Box>
-          </Box>
+            </InputGroupContainer>
+          </InputGroup>
         </Box>
       ) : null}
       <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
         <Typography>Lifetime</Typography>
       </Box>
-      <Box display={'flex'} gap={'10px'}>
-        <Box flex={1}>
+      <InputGroup>
+        <InputGroupContainer>
           <InputLabel>Birth date: *</InputLabel>
           <DatePickerWrapper>
             <DatePicker
@@ -150,8 +168,8 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
               }
             />
           </DatePickerWrapper>
-        </Box>
-        <Box flex={1}>
+        </InputGroupContainer>
+        <InputGroupContainer>
           <InputLabel>Death date:</InputLabel>
           <DatePickerWrapper>
             <DatePicker
@@ -175,8 +193,8 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
               }
             />
           </DatePickerWrapper>
-        </Box>
-      </Box>
+        </InputGroupContainer>
+      </InputGroup>
 
       {hideBack ? (
         <Box sx={{ my: 4 }}>
@@ -184,26 +202,26 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
             <Typography>Cemetery information</Typography>
           </Box>
 
-          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
-            <Box flex={1}>
+          <InputGroup>
+            <InputGroupContainer>
               <InputLabel htmlFor='city'>Cemetery name:</InputLabel>
               <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
-            </Box>
-            <Box flex={1}>
+            </InputGroupContainer>
+            <InputGroupContainer>
               <InputLabel htmlFor='state'>Cemetery plot number:</InputLabel>
               <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
-            </Box>
-          </Box>
-          <Box flexDirection={'row'} display={'flex'} gap={4} my={'10px'}>
-            <Box flex={1}>
+            </InputGroupContainer>
+          </InputGroup>
+          <InputGroup>
+            <InputGroupContainer>
               <InputLabel htmlFor='city'>Cemetery city:</InputLabel>
               <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
-            </Box>
-            <Box flex={1}>
+            </InputGroupContainer>
+            <InputGroupContainer>
               <InputLabel htmlFor='state'>Cemetery state:</InputLabel>
               <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
-            </Box>
-          </Box>
+            </InputGroupContainer>
+          </InputGroup>
           <Box sx={{ display: 'flex' }}>
             <button
               style={{
@@ -258,16 +276,16 @@ export const CreateProfile = ({ onBack, hideBack }: { onBack?: () => void; hideB
           <Box sx={{ borderBottom: 1, borderColor: 'black', paddingBottom: '10px', my: '32px' }}>
             <Typography>Location Details</Typography>
           </Box>
-          <Box flexDirection={'row'} display={'flex'} gap={10} my={'10px'}>
-            <Box flex={1}>
+          <InputGroup>
+            <InputGroupContainer>
               <InputLabel htmlFor='state'>State:</InputLabel>
               <TextField autoFocus fullWidth id='state' placeholder='State' size='small' />
-            </Box>
-            <Box flex={1}>
+            </InputGroupContainer>
+            <InputGroupContainer>
               <InputLabel htmlFor='city'>City:</InputLabel>
               <TextField autoFocus fullWidth id='city' placeholder='City' size='small' />
-            </Box>
-          </Box>
+            </InputGroupContainer>
+          </InputGroup>
         </>
       ) : null}
 

@@ -1,9 +1,19 @@
-import { Avatar, Button, Card, CardContent, Typography } from '@mui/material'
+import { Avatar, Button, Card, CardContent, Typography, styled } from '@mui/material'
 import { Box } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Icon from 'src/@core/components/icon'
 import AddMemberModal from 'src/components/AddMemberModal'
+
+const AvatarContainerWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: 5,
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  [theme.breakpoints.down('sm')]: {
+    justifyContent: 'center'
+  }
+}))
 
 const ViewGroup = () => {
   const router = useRouter()
@@ -19,7 +29,7 @@ const ViewGroup = () => {
             </Button>
           </Box>
           <Box mt={10} sx={{ borderBottom: '1px solid #ddd', pb: 10, mb: 10 }}>
-            <Box sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+            <AvatarContainerWrapper>
               <Avatar sx={{ width: 150, height: 150 }} />
               <Box sx={{ flex: 1 }}>
                 <Typography sx={{ fontWeight: 'bold' }}>Tauhidul</Typography>
@@ -31,9 +41,9 @@ const ViewGroup = () => {
                   Share
                 </Button>
               </Box>
-            </Box>
+            </AvatarContainerWrapper>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
             <Typography sx={{ fontWeight: 700, fontSize: 16 }}>Profiles</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>

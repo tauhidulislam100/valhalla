@@ -1,9 +1,15 @@
-import { Card, CardMedia, Fab, CardContent, Typography, Button } from '@mui/material'
+import { Card, CardMedia, Fab, CardContent, Typography, Button, styled } from '@mui/material'
 import { Box } from '@mui/system'
 import { imageLink } from './PublicProfileHeader'
 import Icon from 'src/@core/components/icon'
 import { useState } from 'react'
 import PhotoModal from './PhotoModal'
+
+const PhotoContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    width: '100%'
+  }
+}))
 
 export const PhotosCard = ({
   width = '280px',
@@ -18,7 +24,7 @@ export const PhotosCard = ({
 
   return (
     <>
-      <Box sx={{ maxWidth: width, position: 'relative' }}>
+      <PhotoContainer sx={{ width, position: 'relative' }}>
         <Card>
           <CardMedia
             onClick={() => setOpenPhotoModal(true)}
@@ -62,7 +68,7 @@ export const PhotosCard = ({
             ) : null}
           </CardContent>
         </Card>
-      </Box>
+      </PhotoContainer>
 
       <PhotoModal open={openPhotoModal} onClose={() => setOpenPhotoModal(false)} />
     </>
